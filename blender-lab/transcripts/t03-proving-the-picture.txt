@@ -1,0 +1,14 @@
+$ python3 check_png.py renders/still-cycles.png
+renders/still-cycles.png
+  size: 480 x 270 (129600 pixels)
+  distinct colours: 6940
+  five commonest colours (RGB, count, share):
+    (141, 143, 145)    8860    6.8%
+    (140, 143, 145)    5925    4.6%
+    (140, 142, 145)    5684    4.4%
+    (142, 144, 146)    5552    4.3%
+    (141, 143, 146)    5254    4.1%
+  strongly coloured pixels (one channel ahead by 40+):
+    red     19817   15.3%
+    green   13696   10.6%
+    blue    17349   13.4%

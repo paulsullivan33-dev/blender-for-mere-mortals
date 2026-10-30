@@ -1,0 +1,28 @@
+site_name: Blender for Mere Mortals
+site_description: 3D modelling and rendering with Blender. Building a scene from code as well as in the window, rendering it with three different engines, and proving the picture is real by measuring its pixels instead of trusting it, with the limits stated plainly.
+site_url: https://paulsullivan33-dev.github.io/blender-for-mere-mortals/
+copyright: 'Part of <a href="https://paulsullivan33-dev.github.io/mere-mortals/">For Mere Mortals</a> · Text CC BY 4.0, code MIT'
+
+# Guides live at the repo root (nice for GitHub browsing).
+# The deploy workflow copies them into docs/ before building.
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - What Blender Is: what-blender-is.md
+  - The Moving Parts: the-moving-parts.md
+  - Installing Blender: installing-blender.md
+  - Reading a Scene: reading-a-scene.md
+  - Building a Scene in Code: building-a-scene-in-code.md
+  - Your First Render: your-first-render.md
+  - Proving the Picture: proving-the-picture.md
+  - Three Engines, One Scene: three-engines.md
+  - Change One Thing: change-one-thing.md
+  - Blender as a Batch Tool: blender-as-a-batch-tool.md
+  - Recipes: recipes.md
+  - The Neighbours: the-neighbours.md
+  - Limits: limits.md
+  - Troubleshooting: troubleshooting.md
+  - Glossary: glossary.md
+  - Writing Criteria: criteria.md

@@ -1,0 +1,51 @@
+$ blender -b still-life.blend --python recolour_ball.py
+=== recolour_ball ===
+Before: material BallBlue base colour = (0.05, 0.2, 0.85)
+After:  material BallOrange base colour = (1.0, 0.45, 0.05)
+Info: Saved as "still-life-orange.blend"
+Saved: /home/hatch/workspace/blender-labwork/still-life-orange.blend
+=== end ===
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+Blender quit
+
+$ blender -b still-life-orange.blend --python render_still.py -- CYCLES 32 renders/still-cycles-orange.png
+Saved: '/home/hatch/workspace/blender-labwork/renders/still-cycles-orange.png'
+Time: 00:20.35 (Saving: 00:00.23)
+
+Control experiment: render the UNCHANGED scene a second time, so noise
+between two runs of the same scene can be told apart from a real change.
+
+$ blender -b still-life.blend --python render_still.py -- CYCLES 32 renders/still-cycles-again.png
+Saved: '/home/hatch/workspace/blender-labwork/renders/still-cycles-again.png'
+Time: 00:22.73 (Saving: 00:00.37)
+
+$ python3 check_png.py renders/still-cycles.png renders/still-cycles-again.png   (control: same scene twice)
+comparison:
+  pixels differing at all: 0 of 129600 (0.0%)
+  pixels differing by more than 10 in some channel: 0 (0.0%)
+
+$ python3 check_png.py renders/still-cycles.png renders/still-cycles-orange.png   (the recoloured Ball)
+comparison:
+  pixels differing at all: 67012 of 129600 (51.7%)
+  pixels differing by more than 10 in some channel: 22085 (17.0%)
+  bounding box of the material change: x 152..394, y 60..253
+  average colour inside the box, before: (117.8, 121.1, 139.0)
+  average colour inside the box, after:  (164.0, 130.7, 99.3)
+
+Census of the orange render (from check_png.py run in full):
+
+$ python3 check_png.py renders/still-cycles-orange.png
+renders/still-cycles-orange.png
+  size: 480 x 270 (129600 pixels)
+  distinct colours: 7119
+  five commonest colours (RGB, count, share):
+    (141, 143, 145)    9198    7.1%
+    (140, 143, 145)    5779    4.5%
+    (140, 142, 145)    5635    4.3%
+    (141, 143, 146)    4720    3.6%
+    (142, 144, 146)    4435    3.4%
+  strongly coloured pixels (one channel ahead by 40+):
+    red     36179   27.9%
+    green   13963   10.8%
+    blue        0    0.0%

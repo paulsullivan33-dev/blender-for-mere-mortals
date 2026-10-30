@@ -1,0 +1,42 @@
+$ blender -b --python-expr "import bpy; bpy.ops.mesh.primitive_cube_asdd(size=2)"
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/hatch/workspace/blender-labwork/blender-4.5.9-linux-x64/4.5/scripts/modules/bpy/ops.py", line 109, in __call__
+    ret = _op_call(self.idname_py(), kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: Calling operator "bpy.ops.mesh.primitive_cube_asdd" error, could not be found
+
+$ echo $?
+0
+
+The traceback printed, and the exit code is still 0: told nothing else,
+a pipeline would call that run a success. Blender has a flag for this:
+
+$ blender -b --python-exit-code 1 --python-expr "import bpy; bpy.ops.mesh.primitive_cube_asdd(size=2)"; echo $?
+1
+
+$ blender -b still-life.blend --python-expr "import bpy; bpy.context.scene.camera = None" --python render_still.py -- CYCLES 32 renders/no-camera.png
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+Read blend: "/home/hatch/workspace/blender-labwork/still-life.blend"
+Traceback (most recent call last):
+  File "/home/hatch/workspace/blender-labwork/render_still.py", line 27, in <module>
+    bpy.ops.render.render(write_still=True)
+  File "/home/hatch/workspace/blender-labwork/blender-4.5.9-linux-x64/4.5/scripts/modules/bpy/ops.py", line 109, in __call__
+    ret = _op_call(self.idname_py(), kw)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Error: Cannot render, no camera
+=== render_still ===
+Engine: CYCLES | Cycles samples: 32
+Output: /home/hatch/workspace/blender-labwork/renders/no-camera.png
+Error: Cannot render, no camera
+Blender quit
+
+$ ls renders/no-camera.png
+ls: cannot access 'renders/no-camera.png': No such file or directory
+
+$ blender -b no-such-file.blend --python inspect_scene.py
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+Error: Cannot read file "/home/hatch/workspace/blender-labwork/no-such-file.blend": No such file or directory
+Blender quit
+exit code: 1

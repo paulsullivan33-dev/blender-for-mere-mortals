@@ -1,0 +1,42 @@
+$ blender -b --python build_scene.py
+Info: Saved as "still-life.blend"
+=== build_scene ===
+Saved: /home/hatch/workspace/blender-labwork/still-life.blend
+  Ground   type=MESH     location=(0.0, 0.0, 0.0)
+  Block    type=MESH     location=(-1.6, 0.0, 1.0)
+  Ball     type=MESH     location=(1.3, 0.2, 1.0)
+  Cone     type=MESH     location=(0.1, -1.9, 1.0)
+  Sun      type=LIGHT    location=(4.0, -3.0, 6.0)
+  Camera   type=CAMERA   location=(6.5, -6.5, 4.2)
+=== end ===
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+Blender quit
+
+$ ls -la still-life.blend
+-rw-rw---- 1 root root 550125 Oct 30 08:26 still-life.blend
+
+$ blender -b still-life.blend --python inspect_scene.py   (fresh process, reopening the file)
+=== inspect_scene ===
+Blender version: 4.5.9 LTS
+Scene name: Scene
+Render engine: BLENDER_EEVEE_NEXT
+Resolution: 480 x 270
+Camera: Camera
+
+Objects (6):
+  Ground       type=MESH     location=(0.0, 0.0, 0.0)
+  Block        type=MESH     location=(-1.6, 0.0, 1.0)
+  Ball         type=MESH     location=(1.3, 0.2, 1.0)
+  Cone         type=MESH     location=(0.1, -1.9, 1.0)
+  Sun          type=LIGHT    location=(4.0, -3.0, 6.0)
+  Camera       type=CAMERA   location=(6.5, -6.5, 4.2)
+
+Materials (4):
+  BallBlue     base colour=(0.05, 0.2, 0.85)
+  BlockRed     base colour=(0.75, 0.06, 0.05)
+  ConeGreen    base colour=(0.1, 0.65, 0.2)
+  GroundGrey   base colour=(0.45, 0.45, 0.45)
+=== end ===
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
